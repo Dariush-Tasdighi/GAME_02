@@ -45,15 +45,39 @@
 			return pathName;
 		}
 
-		public static void PlaySoundEffect_Fire()
+		public static void PlaySoundEffect_Impact()
 		{
+			//string pathName =
+			//	GetPathName("Ball.ogg");
+
 			string pathName =
 				GetPathName("Rocket.wav");
 
-			System.Media.SoundPlayer player =
-				new System.Media.SoundPlayer(soundLocation: pathName);
+			PlaySound(pathName);
+		}
 
-			player.Play();
+		public static void PlaySound(string pathName)
+		{
+			if (System.IO.File.Exists(pathName))
+			{
+				System.Media.SoundPlayer player =
+					new System.Media.SoundPlayer(soundLocation: pathName);
+
+				player.PlaySync();
+
+				//player.Load();
+
+				//if (player.IsLoadCompleted)
+				//{
+				//	player.PlaySync();
+				//}
+
+				//player.Play();
+			}
+			else
+			{
+				int x = 1;
+			}
 		}
 	}
 }

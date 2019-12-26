@@ -15,14 +15,14 @@
 
 			Game.Settings settings = new Game.Settings(this)
 			{
-				BallDiameter = 24,
+				BallDiameter = 18,
 				BallBackColor = System.Drawing.Color.Yellow,
 
-				RacketSpeed = 12,
+				RacketSpeed = 24,
 				RacketWidth = 120,
-				RacketHeight = 6,
-				RacketInitialDistance = 20,
-				RacketBackColor = System.Drawing.Color.Black,
+				RacketHeight = 4,
+				RacketInitialDistance = 30,
+				RacketBackColor = System.Drawing.Color.Green,
 
 				BoardWidth = 360,
 				BoardHeight = 480,

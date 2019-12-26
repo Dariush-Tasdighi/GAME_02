@@ -59,24 +59,24 @@
 			}
 		}
 
-		//private System.Drawing.Image myImage;
+		private System.Drawing.Image myImage;
 
-		//protected virtual System.Drawing.Image MyImage
-		//{
-		//	get
-		//	{
-		//		if (myImage == null)
-		//		{
-		//			string pathName =
-		//				Infrastructure.Utility.GetPathName("Circle.png");
+		protected virtual System.Drawing.Image MyImage
+		{
+			get
+			{
+				if (myImage == null)
+				{
+					string pathName =
+						Infrastructure.Utility.GetPathName("Ball.png");
 
-		//			myImage =
-		//				System.Drawing.Image.FromFile(filename: pathName);
-		//		}
+					myImage =
+						System.Drawing.Image.FromFile(filename: pathName);
+				}
 
-		//		return myImage;
-		//	}
-		//}
+				return myImage;
+			}
+		}
 
 		private System.Timers.Timer myTimer { get; set; }
 
@@ -112,25 +112,6 @@
 			return result;
 		}
 
-		//protected override void Scene_Paint
-		//	(object sender, System.Windows.Forms.PaintEventArgs e)
-		//{
-		//	if (Killed)
-		//	{
-		//		e.Graphics.FillEllipse
-		//			(brush: System.Drawing.Brushes.Transparent, x: X, y: Y, width: Width, height: Height);
-
-		//		DisposeTimer();
-		//	}
-		//	else
-		//	{
-		//		//graphics.DrawImage(image: MyImage, x: X, y: Y, width: Width, height: Height);
-
-		//		e.Graphics.FillEllipse
-		//			(brush: BackColorBrush, x: X, y: Y, width: Width, height: Height);
-		//	}
-		//}
-
 		protected override void Scene_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
 		{
 			base.Scene_Paint(sender, e);
@@ -144,10 +125,10 @@
 			}
 			else
 			{
-				//graphics.DrawImage(image: MyImage, x: X, y: Y, width: Width, height: Height);
+				e.Graphics.DrawImage(image: MyImage, x: X, y: Y, width: Width, height: Height);
 
-				e.Graphics.FillEllipse
-					(brush: BackColorBrush, x: X, y: Y, width: Width, height: Height);
+				//e.Graphics.FillEllipse
+				//	(brush: BackColorBrush, x: X, y: Y, width: Width, height: Height);
 			}
 		}
 
@@ -186,10 +167,12 @@
 			}
 			else
 			{
-				if (Y + Height > Racket.Y)
+				if (Y + Height + SpeedY + Racket.Height >= Racket.Y)
 				{
 					if ((X > Racket.X) && (X < Racket.X + Racket.Width))
 					{
+						//Infrastructure.Utility.PlaySoundEffect_Impact();
+
 						SpeedY =
 							(-1) * SpeedY;
 
@@ -212,25 +195,6 @@
 			}
 
 			Scene.Invalidate();
-		}
-
-		public virtual bool Hitted(int x, int y)
-		{
-			if ((x > X) && (x < X + Width))
-			{
-				if ((y > Y) && (y < Y + Height))
-				{
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-			}
-			else
-			{
-				return false;
-			}
 		}
 
 		public virtual void Kill()
